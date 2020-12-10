@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace coding-crossroads-client build",
+    "dev": "yarn workspace coding-crossroads-server dev",
+    "dev:debug": "yarn workspace coding-crossroads-server dev:debug",
+    "heroku-postbuild": "yarn workspace coding-crossroads-client build",
+    "start": "yarn workspace coding-crossroads-server start"
+  },
+  "engines": {
+    "node": "^14.15"
+  }
+}
