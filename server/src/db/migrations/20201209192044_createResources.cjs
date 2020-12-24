@@ -12,6 +12,8 @@ exports.up = async (knex) => {
     table.text("description").notNullable()
     table.string("url")
     table.string("resourceType").notNullable()
+    table.timestamp("createdAt").notNullable()
+    table.timestamp("updatedAt").notNullable()
   })
 };
 

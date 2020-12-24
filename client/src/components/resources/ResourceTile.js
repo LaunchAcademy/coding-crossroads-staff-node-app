@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react"
+import { Link } from "react-router-dom"
 
-const ResourceTile = ({title, description, resourceType, url }) => {
+const ResourceTile = ({ id, title }) => {
   return(
     <section> 
-      <h4>{title}</h4>
-      <p>{description}</p>
-      <a target="_blank" href={`${url}`}>{`Resource URL: ${title}`}</a>
-      <p>{resourceType}</p>
+      <Link to={`/resources/${id}`}>
+        <h4>{title}</h4>
+      </Link>
     </section>
   )
 };
