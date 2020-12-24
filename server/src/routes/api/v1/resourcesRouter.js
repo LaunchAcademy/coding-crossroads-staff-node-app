@@ -10,7 +10,6 @@ resourcesRouter.get("/", async (req, res) => {
 })
 
 resourcesRouter.get("/:id", async (req,res) => {
-  console.log(req.params.id)
   const resource = await Resource.query().findById(req.params.id)
   return res.status(200).json({ resource })
 })
