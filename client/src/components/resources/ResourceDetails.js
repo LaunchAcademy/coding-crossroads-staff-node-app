@@ -12,12 +12,12 @@ const ResourceDetails = (props) => {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
+      } else {
+        const parsedResponse = await response.json()
+        setResource(parsedResponse.resource)
       }
-      const parsedResponse = await response.json()
-      setResource(parsedResponse.resource)
-    } catch(err) {
-      console.error("Error in Fetch!!")
-      console.error(err)
+    } catch (err) {
+      console.error(`Error in Fetch: ${err.message}`)
     }
   }
   
@@ -30,11 +30,14 @@ const ResourceDetails = (props) => {
       <Link to="/resources">
         <h3>Back to All Resources</h3>
       </Link>
-
-      <h4>{resource.title}</h4>
-      <p>{resource.description}</p>
-      <a target="_blank" href={`${resource.url}`}>{`Resource URL: ${resource.title}`}</a>
-      <p>{resource.resourceType}</p>
+      <div className="callout">
+        <h4>Title: {resource.title}</h4>
+        <p>Description: {resource.description}</p>
+        <p>URL:
+          <a target="_blank" href={`${resource.url}`}> {resource.title}</a>
+        </p>
+        <p>Resource Type: {resource.resourceType}</p>
+      </div>
     </section>
   )
 }

@@ -9,13 +9,15 @@ import "../assets/scss/main.scss";
 
 const App = () => {
   return(
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ResourceList}/>
-        <Route exact path="/resources" component={ResourceList}/>
-        <Route exact path="/resources/:id" component={ResourceDetails}/>
-      </Switch>
-    </BrowserRouter>
+    <div className="grid-container">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ResourceList}/>
+          <Route exact path="/resources" component={ResourceList}/>
+          <Route exact path="/resources/:id" component={ResourceDetails}/>
+        </Switch>
+      </BrowserRouter>
+    </div>
   )
 };
 

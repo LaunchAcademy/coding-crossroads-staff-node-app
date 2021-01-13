@@ -1,6 +1,6 @@
 import express from "express";
 
-import Resource from "../../../models/Resource.js"
+import { Resource } from "../../../models/index.js"
 
 const resourcesRouter = new express.Router();
 
@@ -10,9 +10,12 @@ resourcesRouter.get("/", async (req, res) => {
 })
 
 resourcesRouter.get("/:id", async (req,res) => {
-  const resource = await Resource.query().findById(req.params.id)
-  return res.status(200).json({ resource })
+  try {
+    const resource = await Resource.query().findById(req.params.id).throwIfNotFound()
+    return res.status(200).json({ resource })
+  } catch (err) {
+    return res.status(500).json({ errors: err })
+  }
 })
-
 
 export default resourcesRouter;

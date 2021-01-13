@@ -10,7 +10,9 @@ class Resource extends Model {
       type: "object",
       required: ["title", "description", "resourceType"],
       properties: {
+        title: { type: "string", minLength: 1 },
         description: { type: "string", minLength: 1, maxLength: 500 },
+        url: { type: "string", format: "uri", pattern: "^https?://" },
         resourceType: { type: "string", enum: Object.values(Resource.resourceTypes) }
       }
     }
