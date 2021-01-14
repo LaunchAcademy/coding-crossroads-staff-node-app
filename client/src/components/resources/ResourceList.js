@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 import ResourceTile from "./ResourceTile.js"
+import getResources from "../../apiRequests/getResources.js"
 
 const ResourceList = props => {
   const [resources, setResources] = useState([])
+
+  useEffect(() => {
+    getResources().then((data) => {
+      setResources(data)
+    })
+  }, [])
 
   const resourceTiles = resources.map(resource => {
     return(
