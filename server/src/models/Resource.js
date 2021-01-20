@@ -5,7 +5,7 @@ class Resource extends Model {
     return "resources"
   }
 
-  static get jsonSchema(){
+  static get jsonSchema() {
     return {
       type: "object",
       required: ["title", "description", "resourceType"],
@@ -26,6 +26,21 @@ class Resource extends Model {
       book: "book",
       podcast: "podcast",
       video: "video"
+    }
+  }
+
+  static get relationMappings() {
+    const Review = require("./Review")
+
+    return {
+      reviews: {
+        relation: Model.HasManyRelation,
+        modelClass: Review,
+        join: {
+          from: "resources.id",
+          to: "reviews.resourceId"
+        }
+      }
     }
   }
 }

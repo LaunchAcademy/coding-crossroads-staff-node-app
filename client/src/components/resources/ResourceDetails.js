@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 import getResource from "../../apiRequests/getResource"
 
 const ResourceDetails = (props) => {
-  const [resource, setResource] = useState({})
+  const [resource, setResource] = useState({
+    reviews: []
+  })
   
   useEffect(() => {
     const id = props.match.params.id
