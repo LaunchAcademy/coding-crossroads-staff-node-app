@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
+import getResource from "../../apiRequests/getResource"
+
 const ResourceDetails = (props) => {
   const [resource, setResource] = useState({})
   
-  const fetchResource = async () => {
-    const id = props.match.params.id
-    try {
-      const response = await fetch(`/api/v1/resources/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      } else {
-        const parsedResponse = await response.json()
-        setResource(parsedResponse.resource)
-      }
-    } catch (err) {
-      console.error(`Error in Fetch: ${err.message}`)
-    }
-  }
-  
   useEffect(() => {
-    fetchResource()
+    const id = props.match.params.id
+    getResource(id).then((resource) => {
+      setResource(resource)
+    })
   }, [])
   
   return(
