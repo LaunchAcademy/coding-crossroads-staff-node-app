@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from "react"
 
 import ResourceTile from "./ResourceTile.js"
+import getResources from "../../apiRequests/getResources.js"
 
 const ResourceList = (props) => {
   const [resources, setResources] = useState([])
 
-  const getResources = async () => {
-    try {
-      const response = await fetch("/api/v1/resources")
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const parsedResponse = await response.json()
-      const responseBody = parsedResponse.resources
-      setResources(responseBody)
-
-    } catch(err) {
-      console.error("Error in Fetch!!")
-      console.error(err)
-    }
-  }
-  
   useEffect(() => {
-    getResources()
+    getResources().then((data) => {
+      setResources(data)
+    })
   }, [])
 
   const resourceTiles = resources.map(resource => {
