@@ -1,4 +1,4 @@
-class ReviewsSerializer {
+class ReviewSerializer {
   static getSummary(review) {
     const allowedAttributes = ["id", "description", "rating"]
     let serializedReview = {}
@@ -10,4 +10,4 @@ class ReviewsSerializer {
   }
 }
 
-export default ReviewsSerializer
+export default ReviewSerializer

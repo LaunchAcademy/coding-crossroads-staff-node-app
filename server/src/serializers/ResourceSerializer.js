@@ -1,6 +1,6 @@
-import ReviewsSerializer from "./ReviewsSerializer.js"
+import ReviewSerializer from "./ReviewSerializer.js"
 
-class ResourcesSerializer {
+class ResourceSerializer {
   static getSummary(resource) {
     const allowedAttributes = ["id", "title"]
     let serializedResource = {}
@@ -21,10 +21,10 @@ class ResourcesSerializer {
     
     const reviews = await resource.$relatedQuery("reviews")
     serializedResource.reviews = reviews.map((review) => {
-      return ReviewsSerializer.getSummary(review)
+      return ReviewSerializer.getSummary(review)
     })
     return serializedResource
   }
 }
 
-export default ResourcesSerializer
+export default ResourceSerializer
